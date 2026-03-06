@@ -143,7 +143,7 @@
           <div class="select-trigger" onclick="toggleDropdown()">
             <div class="marquee-container trigger-marquee">
               <span class="marquee-text" id="selected-track-name"
-                >🎵 Lối Nhỏ - Đen</span
+                >💙 Blue - BOL4</span
               >
             </div>
             <i class="fa-solid fa-chevron-down"></i>
@@ -151,6 +151,24 @@
           <div class="options-container" id="options-container">
             <div
               class="option active"
+              data-src="mp3/bluebol4.mp3"
+              onclick="selectTrack(this)"
+            >
+              <div class="marquee-container option-marquee">
+                <span class="marquee-text">💙 Blue - BOL4</span>
+              </div>
+            </div>
+            <div
+              class="option"
+              data-src="mp3/whatislovetwice.mp3"
+              onclick="selectTrack(this)"
+            >
+              <div class="marquee-container option-marquee">
+                <span class="marquee-text">💖 What is Love? - TWICE</span>
+              </div>
+            </div>
+            <div
+              class="option"
               data-src="mp3/loinho.mp3"
               onclick="selectTrack(this)"
             >
@@ -200,7 +218,7 @@
         </div>
       </div>
       <audio id="bg-music">
-        <source src="mp3/loinho.mp3" type="audio/mpeg" />
+        <source src="mp3/bluebol4.mp3" type="audio/mpeg" />
       </audio>
     </div>
 
@@ -245,6 +263,7 @@
         setTimeout(() => icon.remove(), 11000);
       }
       setInterval(createFloatingIcon, 800);
+
       const music = document.getElementById("bg-music");
       const playPauseBtn = document.getElementById("play-pause-btn");
       const volumeSlider = document.getElementById("volume-slider");
@@ -253,6 +272,7 @@
       const customSelect = document.getElementById("custom-music-select");
       const selectedTrackName = document.getElementById("selected-track-name");
       const options = document.querySelectorAll(".option");
+
       function applyMarquee() {
         const containers = document.querySelectorAll(".marquee-container");
         containers.forEach((container) => {
@@ -278,6 +298,7 @@
       }
       window.addEventListener("load", applyMarquee);
       window.addEventListener("resize", applyMarquee);
+
       function toggleDropdown() {
         customSelect.classList.toggle("open");
         applyMarquee();
@@ -286,6 +307,7 @@
         if (!customSelect.contains(event.target))
           customSelect.classList.remove("open");
       });
+
       function selectTrack(element) {
         options.forEach((opt) => opt.classList.remove("active"));
         element.classList.add("active");
@@ -294,15 +316,19 @@
           .getAttribute("data-original-text");
         selectedTrackName.innerText = originalText;
         selectedTrackName.setAttribute("data-original-text", originalText);
+
         music.src = element.getAttribute("data-src");
         music.play();
+
         customSelect.classList.remove("open");
         applyMarquee();
       }
+
       music.onpause = () =>
         (playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>');
       music.onplay = () =>
         (playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>');
+
       music.onended = function () {
         let currentIndex = -1;
         options.forEach((opt, index) => {
@@ -312,6 +338,7 @@
         if (currentIndex >= options.length) currentIndex = 0;
         selectTrack(options[currentIndex]);
       };
+
       function toggleMusic() {
         if (music.paused) music.play();
         else music.pause();

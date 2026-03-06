@@ -140,7 +140,7 @@
           <div class="select-trigger" onclick="toggleDropdown()">
             <div class="marquee-container trigger-marquee">
               <span class="marquee-text" id="selected-track-name"
-                >🎵 Lối Nhỏ - Đen</span
+                >💙 Blue - BOL4</span
               >
             </div>
             <i class="fa-solid fa-chevron-down"></i>
@@ -148,6 +148,24 @@
           <div class="options-container" id="options-container">
             <div
               class="option active"
+              data-src="mp3/bluebol4.mp3"
+              onclick="selectTrack(this)"
+            >
+              <div class="marquee-container option-marquee">
+                <span class="marquee-text">💙 Blue - BOL4</span>
+              </div>
+            </div>
+            <div
+              class="option"
+              data-src="mp3/whatislovetwice.mp3"
+              onclick="selectTrack(this)"
+            >
+              <div class="marquee-container option-marquee">
+                <span class="marquee-text">💖 What is Love? - TWICE</span>
+              </div>
+            </div>
+            <div
+              class="option"
               data-src="mp3/loinho.mp3"
               onclick="selectTrack(this)"
             >
@@ -197,7 +215,7 @@
         </div>
       </div>
       <audio id="bg-music">
-        <source src="mp3/loinho.mp3" type="audio/mpeg" />
+        <source src="mp3/bluebol4.mp3" type="audio/mpeg" />
       </audio>
     </div>
 

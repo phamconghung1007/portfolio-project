@@ -148,7 +148,7 @@
           <div class="select-trigger" onclick="toggleDropdown()">
             <div class="marquee-container trigger-marquee">
               <span class="marquee-text" id="selected-track-name"
-                >🎵 Lối Nhỏ - Đen</span
+                >💙 Blue - BOL4</span
               >
             </div>
             <i class="fa-solid fa-chevron-down"></i>
@@ -156,6 +156,24 @@
           <div class="options-container" id="options-container">
             <div
               class="option active"
+              data-src="mp3/bluebol4.mp3"
+              onclick="selectTrack(this)"
+            >
+              <div class="marquee-container option-marquee">
+                <span class="marquee-text">💙 Blue - BOL4</span>
+              </div>
+            </div>
+            <div
+              class="option"
+              data-src="mp3/whatislovetwice.mp3"
+              onclick="selectTrack(this)"
+            >
+              <div class="marquee-container option-marquee">
+                <span class="marquee-text">💖 What is Love? - TWICE</span>
+              </div>
+            </div>
+            <div
+              class="option"
               data-src="mp3/loinho.mp3"
               onclick="selectTrack(this)"
             >
@@ -205,10 +223,9 @@
         </div>
       </div>
       <audio id="bg-music">
-        <source src="mp3/loinho.mp3" type="audio/mpeg" />
+        <source src="mp3/bluebol4.mp3" type="audio/mpeg" />
       </audio>
     </div>
-
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       AOS.init({ offset: 0 });
@@ -295,7 +312,6 @@
           customSelect.classList.remove("open");
       });
 
-      // --- ĐÃ FIX: HÀM CHỌN BÀI LÀ TỰ PHÁT NHẠC LUÔN ---
       function selectTrack(element) {
         options.forEach((opt) => opt.classList.remove("active"));
         element.classList.add("active");
@@ -306,7 +322,7 @@
         selectedTrackName.setAttribute("data-original-text", originalText);
 
         music.src = element.getAttribute("data-src");
-        music.play(); // ÉP BUỘC PHÁT NHẠC KHI CHỌN BÀI
+        music.play();
 
         customSelect.classList.remove("open");
         applyMarquee();

@@ -16,7 +16,8 @@
     <nav>
       <div class="nav-container">
         <a
-          href="index.html"
+          href="javascript:void(0)"
+          onclick="switchPage('home')"
           class="logo"
           data-aos="zoom-in"
           data-aos-duration="1000"
@@ -29,7 +30,12 @@
             data-aos-duration="1000"
             data-aos-delay="100"
           >
-            <a href="index.html" class="active-nav">Home</a>
+            <a
+              href="javascript:void(0)"
+              onclick="switchPage('home')"
+              class="active-nav"
+              >Home</a
+            >
           </div>
           <div
             class="link"
@@ -37,7 +43,9 @@
             data-aos-duration="1000"
             data-aos-delay="200"
           >
-            <a href="about.html">About Me</a>
+            <a href="javascript:void(0)" onclick="switchPage('about')"
+              >About Me</a
+            >
           </div>
           <div
             class="link"
@@ -45,7 +53,9 @@
             data-aos-duration="1000"
             data-aos-delay="300"
           >
-            <a href="experiences.html">Experiences</a>
+            <a href="javascript:void(0)" onclick="switchPage('experiences')"
+              >Experiences</a
+            >
           </div>
           <div
             class="link"
@@ -53,7 +63,9 @@
             data-aos-duration="1000"
             data-aos-delay="400"
           >
-            <a href="projects.html">Projects</a>
+            <a href="javascript:void(0)" onclick="switchPage('projects')"
+              >Projects</a
+            >
           </div>
           <div
             class="link"
@@ -61,7 +73,9 @@
             data-aos-duration="1000"
             data-aos-delay="500"
           >
-            <a href="hobbies.html">Hobbies</a>
+            <a href="javascript:void(0)" onclick="switchPage('hobbies')"
+              >Hobbies</a
+            >
           </div>
           <div
             class="link contact-btn"
@@ -69,25 +83,42 @@
             data-aos-duration="1000"
             data-aos-delay="600"
           >
-            <a href="contact.html">Contact</a>
+            <a href="javascript:void(0)" onclick="switchPage('contact')"
+              >Contact</a
+            >
           </div>
         </div>
         <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
       </div>
       <div class="dropdown">
         <div class="links">
-          <a href="index.html" class="active-nav">Home</a>
-          <a href="about.html">About Me</a>
-          <a href="experiences.html">Experiences</a>
-          <a href="projects.html">Projects</a>
-          <a href="hobbies.html">Hobbies</a>
-          <a href="contact.html">Contact</a>
+          <a
+            href="javascript:void(0)"
+            onclick="switchPage('home')"
+            class="active-nav"
+            >Home</a
+          >
+          <a href="javascript:void(0)" onclick="switchPage('about')"
+            >About Me</a
+          >
+          <a href="javascript:void(0)" onclick="switchPage('experiences')"
+            >Experiences</a
+          >
+          <a href="javascript:void(0)" onclick="switchPage('projects')"
+            >Projects</a
+          >
+          <a href="javascript:void(0)" onclick="switchPage('hobbies')"
+            >Hobbies</a
+          >
+          <a href="javascript:void(0)" onclick="switchPage('contact')"
+            >Contact</a
+          >
           <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
         </div>
       </div>
     </nav>
 
-    <section id="home">
+    <section id="home" class="page-section">
       <div class="main-container">
         <div
           class="image profile-img"
@@ -120,16 +151,203 @@
       </div>
     </section>
 
+    <section id="about" class="page-section">
+      <div class="main-container">
+        <div
+          class="image profile-img"
+          data-aos="zoom-in-right"
+          data-aos-duration="2500"
+        >
+          <img src="images/h.jpg" alt="Thanh Huyền Profile Picture" />
+        </div>
+        <div class="content">
+          <h1
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="800"
+          >
+            Về <span>Mình</span>
+          </h1>
+          <p data-aos="flip-up" data-aos-duration="1000" data-aos-delay="1000">
+            Xin chào! Mình là Thanh Huyền. Mình là một người đam mê sáng tạo,
+            thích khám phá những điều mới mẻ trong công nghệ và cuộc sống. Mình
+            yêu thích việc học hỏi và luôn tìm kiếm cơ hội để phát triển bản
+            thân. Ngoài ra, mình cũng rất yêu thiên nhiên, âm nhạc và những
+            chuyến phiêu lưu mới.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiences" class="page-section">
+      <div class="main-container">
+        <div
+          class="image profile-img"
+          data-aos="zoom-in-right"
+          data-aos-duration="2500"
+        >
+          <img src="images/th5.jpg" alt="Thanh Huyền Profile Picture" />
+        </div>
+        <div class="content">
+          <h1
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="800"
+          >
+            Kinh nghiệm <span>làm việc</span>
+          </h1>
+          <p data-aos="flip-up" data-aos-duration="1000" data-aos-delay="1000">
+            Hành trình học tập và tích lũy kỹ năng của mình qua các hoạt động và
+            công việc. (Bạn có thể liệt kê các vị trí đã làm, kỹ năng nổi bật ở
+            đây).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="page-section">
+      <div class="main-container">
+        <div
+          class="image profile-img"
+          data-aos="zoom-in-right"
+          data-aos-duration="2500"
+        >
+          <img src="images/th3.jpg" alt="Thanh Huyền Profile Picture" />
+        </div>
+        <div class="content">
+          <h1
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="800"
+          >
+            Dự án <span>của mình</span>
+          </h1>
+          <p data-aos="flip-up" data-aos-duration="1000" data-aos-delay="1000">
+            Một số sản phẩm và dự án nổi bật mình đã thực hiện. Mỗi dự án đều là
+            một bước đệm giúp mình trưởng thành hơn.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="hobbies" class="page-section">
+      <div class="main-container">
+        <div
+          class="image profile-img"
+          data-aos="zoom-in-right"
+          data-aos-duration="2500"
+        >
+          <img src="images/th4.jpg" alt="Thanh Huyền Profile Picture" />
+        </div>
+        <div class="content">
+          <h1
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="800"
+          >
+            Sở thích <span>của mình</span>
+          </h1>
+          <p data-aos="flip-up" data-aos-duration="1000" data-aos-delay="1000">
+            Nghe nhạc chill chill, đi lượn phố phường, uống trà sữa, hoặc ngồi
+            code những giao diện siêu mượt như thế này đây!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="page-section">
+      <div class="main-container">
+        <div
+          class="image profile-img"
+          data-aos="zoom-in-right"
+          data-aos-duration="2500"
+        >
+          <img src="images/th2.jpg" alt="Thanh Huyền Profile Picture" />
+        </div>
+        <div class="content">
+          <h1
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="800"
+          >
+            Kết nối với <span>Mình</span>
+          </h1>
+          <p data-aos="flip-up" data-aos-duration="1000" data-aos-delay="1000">
+            Đừng ngại ngần theo dõi và kết nối với mình qua các nền tảng mạng xã
+            hội dưới đây nhé!
+          </p>
+          <div
+            class="social-links"
+            data-aos="flip-down"
+            data-aos-duration="1000"
+            data-aos-delay="1200"
+          >
+            <a href="https://github.com/thanhhuyen1510" target="_blank"
+              ><i class="fa-brands fa-github"></i
+            ></a>
+            <a
+              href="https://www.facebook.com/thanh.huyen.671601"
+              target="_blank"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/thanh-huyền-a8598a336"
+              target="_blank"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
+            <a href="https://www.tiktok.com/@th.truemilk.0150" target="_blank"
+              ><i class="fa-brands fa-tiktok"></i
+            ></a>
+            <a href="https://www.instagram.com/tit_hit._1510/" target="_blank"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+          </div>
+          <div
+            class="btn"
+            data-aos="zoom-out-left"
+            data-aos-duration="1000"
+            data-aos-delay="1300"
+          >
+            <a href="images/cv.jpg" download="CV_ThanhHuyen.png">
+              <button>Download CV</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div
       class="music-player"
       data-aos="fade-up"
       data-aos-delay="1500"
       data-aos-duration="1000"
     >
+      <div class="progress-container">
+        <span id="current-time">0:00</span>
+        <input
+          type="range"
+          id="progress-bar"
+          min="0"
+          max="100"
+          value="0"
+          oninput="seekMusic()"
+        />
+        <span id="total-time">0:00</span>
+      </div>
+
       <div class="music-controls">
+        <button class="btn-nav-music" onclick="prevTrack()">
+          <i class="fa-solid fa-backward-step"></i>
+        </button>
+
         <button id="play-pause-btn" onclick="toggleMusic()">
           <i class="fa-solid fa-play"></i>
         </button>
+
+        <button class="btn-nav-music" onclick="nextTrack()">
+          <i class="fa-solid fa-forward-step"></i>
+        </button>
+
         <div class="volume-container">
           <button id="mute-btn" onclick="toggleMute()">
             <i class="fa-solid fa-volume-high" id="volume-icon"></i>
@@ -222,10 +440,11 @@
           </div>
         </div>
       </div>
-      <audio id="bg-music">
+      <audio id="bg-music" preload="metadata">
         <source src="mp3/bluebol4.mp3" type="audio/mpeg" />
       </audio>
     </div>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       AOS.init({ offset: 0 });
@@ -267,6 +486,73 @@
         setTimeout(() => icon.remove(), 11000);
       }
       setInterval(createFloatingIcon, 800);
+      function switchPage(pageId, updateUrl = true) {
+        const pageTitles = {
+          home: "Thanh Huyền | Home",
+          about: "Thanh Huyền | About Me",
+          experiences: "Thanh Huyền | Experiences",
+          projects: "Thanh Huyền | Projects",
+          hobbies: "Thanh Huyền | Hobbies",
+          contact: "Thanh Huyền | Contact",
+        };
+        if (pageTitles[pageId]) {
+          document.title = pageTitles[pageId];
+        }
+        document.body.classList.add("no-transition");
+        document.querySelectorAll(".page-section").forEach((sec) => {
+          sec.style.display = "none";
+        });
+        const targetSec = document.getElementById(pageId);
+        if (targetSec) {
+          targetSec.style.display = "block";
+        }
+        if (updateUrl) {
+          window.history.pushState(null, null, "#" + pageId);
+        }
+        document
+          .querySelectorAll("nav a")
+          .forEach((link) => link.classList.remove("active-nav"));
+        document
+          .querySelectorAll(`a[onclick="switchPage('${pageId}')"]`)
+          .forEach((link) => {
+            if (!link.classList.contains("logo")) {
+              link.classList.add("active-nav");
+            }
+          });
+        cancel();
+        const elementsToAnimate = [
+          ...document.querySelectorAll("nav [data-aos]"),
+          document.querySelector(".music-player"),
+          ...(targetSec ? targetSec.querySelectorAll("[data-aos]") : []),
+        ].filter(Boolean);
+        elementsToAnimate.forEach((el) => {
+          el.classList.remove("aos-animate");
+        });
+        void document.body.offsetWidth;
+        document.body.classList.remove("no-transition");
+        setTimeout(() => {
+          elementsToAnimate.forEach((el) => el.classList.add("aos-animate"));
+        }, 50);
+      }
+
+      window.addEventListener("load", () => {
+        applyMarquee();
+        let hash = window.location.hash.substring(1);
+        if (hash && document.getElementById(hash)) {
+          switchPage(hash, false);
+        } else {
+          switchPage("home", false);
+        }
+      });
+
+      window.addEventListener("popstate", () => {
+        let hash = window.location.hash.substring(1);
+        if (hash && document.getElementById(hash)) {
+          switchPage(hash, false);
+        } else {
+          switchPage("home", false);
+        }
+      });
 
       const music = document.getElementById("bg-music");
       const playPauseBtn = document.getElementById("play-pause-btn");
@@ -276,6 +562,38 @@
       const customSelect = document.getElementById("custom-music-select");
       const selectedTrackName = document.getElementById("selected-track-name");
       const options = document.querySelectorAll(".option");
+
+      const progressBar = document.getElementById("progress-bar");
+      const currentTimeEl = document.getElementById("current-time");
+      const totalTimeEl = document.getElementById("total-time");
+
+      function formatTime(seconds) {
+        if (isNaN(seconds) || !isFinite(seconds)) return "0:00";
+        let min = Math.floor(seconds / 60);
+        let sec = Math.floor(seconds % 60);
+        if (sec < 10) sec = "0" + sec;
+        return `${min}:${sec}`;
+      }
+
+      music.addEventListener("timeupdate", () => {
+        if (music.duration) {
+          progressBar.value = (music.currentTime / music.duration) * 100;
+          currentTimeEl.innerText = formatTime(music.currentTime);
+        }
+      });
+
+      music.addEventListener("loadedmetadata", () => {
+        totalTimeEl.innerText = formatTime(music.duration);
+      });
+
+      if (music.readyState >= 1) {
+        totalTimeEl.innerText = formatTime(music.duration);
+      }
+
+      function seekMusic() {
+        let seekTime = (progressBar.value / 100) * music.duration;
+        music.currentTime = seekTime;
+      }
 
       function applyMarquee() {
         const containers = document.querySelectorAll(".marquee-container");
@@ -300,7 +618,6 @@
           }
         });
       }
-      window.addEventListener("load", applyMarquee);
       window.addEventListener("resize", applyMarquee);
 
       function toggleDropdown() {
@@ -322,10 +639,33 @@
         selectedTrackName.setAttribute("data-original-text", originalText);
 
         music.src = element.getAttribute("data-src");
+        progressBar.value = 0;
+        currentTimeEl.innerText = "0:00";
+
         music.play();
 
         customSelect.classList.remove("open");
         applyMarquee();
+      }
+
+      function nextTrack() {
+        let currentIndex = -1;
+        options.forEach((opt, index) => {
+          if (opt.classList.contains("active")) currentIndex = index;
+        });
+        currentIndex++;
+        if (currentIndex >= options.length) currentIndex = 0;
+        selectTrack(options[currentIndex]);
+      }
+
+      function prevTrack() {
+        let currentIndex = -1;
+        options.forEach((opt, index) => {
+          if (opt.classList.contains("active")) currentIndex = index;
+        });
+        currentIndex--;
+        if (currentIndex < 0) currentIndex = options.length - 1;
+        selectTrack(options[currentIndex]);
       }
 
       music.onpause = () =>
@@ -334,13 +674,7 @@
         (playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>');
 
       music.onended = function () {
-        let currentIndex = -1;
-        options.forEach((opt, index) => {
-          if (opt.classList.contains("active")) currentIndex = index;
-        });
-        currentIndex++;
-        if (currentIndex >= options.length) currentIndex = 0;
-        selectTrack(options[currentIndex]);
+        nextTrack();
       };
 
       function toggleMusic() {

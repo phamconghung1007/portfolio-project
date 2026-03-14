@@ -88,7 +88,7 @@
             >
           </div>
         </div>
-        <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+        <i class="fa-solid fa-bars hamburg" onclick="toggleMenu()"></i>
       </div>
       <div class="dropdown">
         <div class="links">
@@ -113,7 +113,6 @@
           <a href="javascript:void(0)" onclick="switchPage('contact')"
             >Contact</a
           >
-          <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
         </div>
       </div>
     </nav>
@@ -316,8 +315,13 @@
       </div>
     </section>
 
+    <div class="mobile-player-toggle" onclick="togglePlayerPopup()">
+      <i class="fa-solid fa-compact-disc" id="disk-icon"></i>
+    </div>
+
     <div
       class="music-player"
+      id="main-music-player"
       data-aos="fade-up"
       data-aos-delay="1500"
       data-aos-duration="1000"
@@ -330,7 +334,7 @@
           min="0"
           max="100"
           value="0"
-          oninput="seekMusic()"
+          step="any"
         />
         <span id="total-time">0:00</span>
       </div>
@@ -362,6 +366,7 @@
             oninput="changeVolume()"
           />
         </div>
+
         <div class="custom-music-select" id="custom-music-select">
           <div class="select-trigger" onclick="toggleDropdown()">
             <div class="marquee-container trigger-marquee">
@@ -450,13 +455,35 @@
       AOS.init({ offset: 0 });
     </script>
     <script>
-      function hamburg() {
-        document.querySelector(".dropdown").style.transform = "translateY(0px)";
+      let isMenuOpen = false;
+      function toggleMenu() {
+        const dropdown = document.querySelector(".dropdown");
+        if (isMenuOpen) {
+          dropdown.style.transform = "translateY(-500px)";
+          isMenuOpen = false;
+        } else {
+          dropdown.style.transform = "translateY(0px)";
+          isMenuOpen = true;
+        }
       }
+
       function cancel() {
         document.querySelector(".dropdown").style.transform =
           "translateY(-500px)";
+        isMenuOpen = false;
       }
+
+      // FIX CHẠY CHỮ KHI MỞ BẢNG NHẠC Ở MOBILE
+      function togglePlayerPopup() {
+        const player = document.getElementById("main-music-player");
+        player.classList.toggle("show-player");
+
+        // Đợi 400 mili-giây cho bảng trượt ra xong, rồi bắt nó đo chiều rộng để kích hoạt chữ chạy
+        if (player.classList.contains("show-player")) {
+          setTimeout(applyMarquee, 400);
+        }
+      }
+
       function createFloatingIcon() {
         const icon = document.createElement("i");
         const icons = [
@@ -486,6 +513,7 @@
         setTimeout(() => icon.remove(), 11000);
       }
       setInterval(createFloatingIcon, 800);
+
       function switchPage(pageId, updateUrl = true) {
         const pageTitles = {
           home: "Thanh Huyền | Home",
@@ -498,7 +526,9 @@
         if (pageTitles[pageId]) {
           document.title = pageTitles[pageId];
         }
+
         document.body.classList.add("no-transition");
+
         document.querySelectorAll(".page-section").forEach((sec) => {
           sec.style.display = "none";
         });
@@ -506,9 +536,11 @@
         if (targetSec) {
           targetSec.style.display = "block";
         }
+
         if (updateUrl) {
           window.history.pushState(null, null, "#" + pageId);
         }
+
         document
           .querySelectorAll("nav a")
           .forEach((link) => link.classList.remove("active-nav"));
@@ -519,17 +551,22 @@
               link.classList.add("active-nav");
             }
           });
+
         cancel();
+
         const elementsToAnimate = [
           ...document.querySelectorAll("nav [data-aos]"),
           document.querySelector(".music-player"),
           ...(targetSec ? targetSec.querySelectorAll("[data-aos]") : []),
         ].filter(Boolean);
+
         elementsToAnimate.forEach((el) => {
           el.classList.remove("aos-animate");
         });
+
         void document.body.offsetWidth;
         document.body.classList.remove("no-transition");
+
         setTimeout(() => {
           elementsToAnimate.forEach((el) => el.classList.add("aos-animate"));
         }, 50);
@@ -558,6 +595,8 @@
       const playPauseBtn = document.getElementById("play-pause-btn");
       const volumeSlider = document.getElementById("volume-slider");
       const volumeIcon = document.getElementById("volume-icon");
+      const diskIcon = document.getElementById("disk-icon");
+
       let currentVolume = 1;
       const customSelect = document.getElementById("custom-music-select");
       const selectedTrackName = document.getElementById("selected-track-name");
@@ -567,6 +606,8 @@
       const currentTimeEl = document.getElementById("current-time");
       const totalTimeEl = document.getElementById("total-time");
 
+      let isDragging = false;
+
       function formatTime(seconds) {
         if (isNaN(seconds) || !isFinite(seconds)) return "0:00";
         let min = Math.floor(seconds / 60);
@@ -575,25 +616,56 @@
         return `${min}:${sec}`;
       }
 
-      music.addEventListener("timeupdate", () => {
-        if (music.duration) {
+      function smoothProgressUpdate() {
+        if (music.duration && !isDragging && !music.paused) {
           progressBar.value = (music.currentTime / music.duration) * 100;
           currentTimeEl.innerText = formatTime(music.currentTime);
         }
-      });
+        requestAnimationFrame(smoothProgressUpdate);
+      }
+      requestAnimationFrame(smoothProgressUpdate);
 
       music.addEventListener("loadedmetadata", () => {
         totalTimeEl.innerText = formatTime(music.duration);
+        if (!isDragging) {
+          progressBar.value = (music.currentTime / music.duration) * 100;
+          currentTimeEl.innerText = formatTime(music.currentTime);
+        }
       });
 
       if (music.readyState >= 1) {
         totalTimeEl.innerText = formatTime(music.duration);
       }
 
-      function seekMusic() {
+      progressBar.addEventListener("mousedown", () => (isDragging = true));
+      progressBar.addEventListener("touchstart", () => (isDragging = true), {
+        passive: true,
+      });
+
+      progressBar.addEventListener("input", () => {
+        isDragging = true;
+        let seekTime = (progressBar.value / 100) * music.duration;
+        currentTimeEl.innerText = formatTime(seekTime);
+      });
+
+      progressBar.addEventListener("change", () => {
         let seekTime = (progressBar.value / 100) * music.duration;
         music.currentTime = seekTime;
-      }
+        setTimeout(() => {
+          isDragging = false;
+        }, 50);
+      });
+
+      progressBar.addEventListener("mouseup", () => {
+        setTimeout(() => {
+          isDragging = false;
+        }, 50);
+      });
+      progressBar.addEventListener("touchend", () => {
+        setTimeout(() => {
+          isDragging = false;
+        }, 50);
+      });
 
       function applyMarquee() {
         const containers = document.querySelectorAll(".marquee-container");
@@ -608,6 +680,10 @@
           const originalText = textElement.getAttribute("data-original-text");
           textElement.classList.remove("scrolling");
           textElement.innerHTML = originalText;
+
+          // Force layout để đo chuẩn hơn
+          void textElement.offsetWidth;
+
           if (textElement.scrollWidth > container.clientWidth) {
             const gap =
               "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -624,6 +700,7 @@
         customSelect.classList.toggle("open");
         applyMarquee();
       }
+
       document.addEventListener("click", function (event) {
         if (!customSelect.contains(event.target))
           customSelect.classList.remove("open");
@@ -668,10 +745,15 @@
         selectTrack(options[currentIndex]);
       }
 
-      music.onpause = () =>
-        (playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>');
-      music.onplay = () =>
-        (playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>');
+      music.onpause = () => {
+        playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        if (diskIcon) diskIcon.classList.remove("spinning");
+      };
+
+      music.onplay = () => {
+        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        if (diskIcon) diskIcon.classList.add("spinning");
+      };
 
       music.onended = function () {
         nextTrack();
